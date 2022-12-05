@@ -16,7 +16,7 @@ namespace FUELSTATION
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Car());
+            Application.Run(new LOGIN());
         }
     }
 }

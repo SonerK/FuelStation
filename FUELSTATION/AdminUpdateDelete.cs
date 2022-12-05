@@ -76,16 +76,16 @@ namespace FUELSTATION
 
           
             TB_UID.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            TB_Name.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-            TB_Surname.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-           TB_Password.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-            TB_E_Posta.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
-            TB_TelephoneNumber.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
-            dateTimePicker1.Value = (DateTime)dataGridView1.Rows[e.RowIndex].Cells[6].Value;
-            TB_StationCode.Text = dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString();
-            TB_PersonNumber.Text = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
-            TB_Department.Text = dataGridView1.Rows[e.RowIndex].Cells[9].Value.ToString();
-            TB_USID.Text = dataGridView1.Rows[e.RowIndex].Cells[11].Value.ToString();
+            TB_Name.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+            TB_Surname.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
+           TB_Password.Text = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString();
+            TB_E_Posta.Text = dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString();
+            TB_TelephoneNumber.Text = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
+            dateTimePicker1.Value = (DateTime)dataGridView1.Rows[e.RowIndex].Cells[9].Value;
+            TB_StationCode.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            TB_PersonNumber.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            TB_Department.Text = dataGridView1.Rows[e.RowIndex].Cells[11].Value.ToString();
+            TB_USID.Text = dataGridView1.Rows[e.RowIndex].Cells[13].Value.ToString();
             BT_Delete.Enabled = true;
             BT_Update.Enabled = true;
             TB_Password.Text = "";

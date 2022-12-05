@@ -9,12 +9,19 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace FUELSTATION
 {
     public partial class UsersUpdate : Form
     {
-          private void UsersUpdate_Load(object sender, EventArgs e)
+               public UsersUpdate()
+        {
+            InitializeComponent();
+          
+        }
+      
+        private void UsersUpdate_Load(object sender, EventArgs e)
         {
             City();
         }
@@ -54,17 +61,8 @@ namespace FUELSTATION
         }
 
 
-        public UsersUpdate()
-        {
-            InitializeComponent();
-        }
 
-        private void BT_CarUpdate_Click(object sender, EventArgs e)
-        {
-            Car car = new Car();
-            car.Show();
-
-        }
+        
    private void CB_City_SelectedIndexChanged(object sender, EventArgs e)
         {
             var DistrictList = from District in DC.District where District.CityID == Convert.ToInt32(CB_City.SelectedValue) select District;
@@ -97,7 +95,11 @@ namespace FUELSTATION
                         {
 
 
-                            string DBUpdate = "update USERS set Name='" + this.TB_Name.Text + "',SurName='" + this.TB_Surname.Text + "',Password='" + Md5(this.TB_Password.Text) + "',Email ='" + this.TB_E_Posta2.Text + "',Phone ='" + this.TB_TelephoneNumber.Text + "',BirthDay ='" + this.dateTimePicker1.Value.ToString("yyyy-MM-dd") + "',CityID='"+ Convert.ToInt32(this.CB_City.SelectedValue)+ "',DistrictID='" +Convert.ToInt32((this.CB_District.SelectedIndex + 1))+ "' where Email ='" + this.TB_E_Posta.Text + "'; ";
+                            string DBUpdate = "update USERS set Name='" + this.TB_Name.Text + "',SurName='" + this.TB_Surname.Text + "',Password='" 
+                                + Md5(this.TB_Password.Text) + "',Email ='" + this.TB_E_Posta2.Text + "',Phone ='" 
+                                + this.TB_TelephoneNumber.Text + "',BirthDay ='" + this.dateTimePicker1.Value.ToString("yyyy-MM-dd") 
+                                + "',CityID='"+ Convert.ToInt32(this.CB_City.SelectedValue)+ "',DistrictID='" 
+                                +Convert.ToInt32((this.CB_District.SelectedIndex + 1))+ "' where Email ='" + this.TB_E_Posta.Text + "'; ";
                             SqlConnection connect = new SqlConnection(connectionString);
 
                             SqlCommand komut_Update = new SqlCommand(DBUpdate, connect);
@@ -124,11 +126,7 @@ namespace FUELSTATION
                     }
                 }
 
-                else
-                {
-                    MessageBox.Show("Lütfen Eski Emailinizi Kontrol Ediniz");
-                    conn.Close();
-                }
+              
             }
         }
 

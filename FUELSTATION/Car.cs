@@ -16,10 +16,16 @@ namespace FUELSTATION
        // string connectionString = "Data Source=TULPAR;Initial Catalog=GASSTATION;Integrated Security=True";
         SqlConnection connect = new SqlConnection("Data Source=TULPAR;Initial Catalog=GASSTATION;Integrated Security=True");
         DataClasses1DataContext DC = new DataClasses1DataContext();
-        public Car()
+        public Car(string name, string surname, string uid_, string email_)
         {
             InitializeComponent();
+            ad = name;
+            soyad = surname;
+            uid = uid_;
+            email = email_;
+
         }
+        string ad, soyad, uid, email;
 
         void CarBrandNewCar()
         {
@@ -64,26 +70,28 @@ namespace FUELSTATION
         
         private void Car_Load(object sender, EventArgs e)
         {
+
+            
+          
+            P_CarInfo.Visible = false;
             RB_CarUpdate.Checked = false;
             RB_NewCar.Checked = false;
-            P_CarUpdate.Visible = false;
-            P_NewCar.Visible = false;
-           P_CarInfo.Visible = false;   
-            
         }
         private void RB_CarUpdate_CheckedChanged(object sender, EventArgs e)
         {
+
+
             CarBrandCarUpdate();
             FuelTypeCarUpdate();
-            P_CarUpdate.Visible = true;
-            P_NewCar.Visible = false;
+            groupBox1.Visible = false;
+            groupBox2.Visible = true;
         }   
         private void RB_NewCar_CheckedChanged(object sender, EventArgs e)
         {
             CarBrandNewCar();
             FuelTypeNewCar();
-            P_CarUpdate.Visible = false;
-            P_NewCar.Visible = true;
+            groupBox1.Visible = true;
+            groupBox2.Visible = false;
         }
 
         private void CB_CarBrandNewCar_SelectedIndexChanged(object sender, EventArgs e)
@@ -93,6 +101,43 @@ namespace FUELSTATION
             CB_CarModelNewCar.DisplayMember = "ModelName";
             CB_CarModelNewCar.ValueMember = "BrandID";
             CB_CarModelNewCar.DataSource = CarModelList;
+        }
+
+        private void BT_LN_Click(object sender, EventArgs e)
+        {
+            
+            try
+            {
+                connect.Open();
+                string LPN = " select * from UserCar where Email='"+ email + "'; ";
+                
+                
+                SqlCommand komut_LPN = new SqlCommand(LPN, connect);
+                //komut_LPN.Parameters.AddWithValue("@LPN", CB_Car.Text.ToString());
+                // komut_LPN.ExecuteNonQuery();
+
+                CB_Car.DisplayMember = "LPN";
+                    CB_Car.ValueMember = "Email";
+                   // CB_CarBrandNewCar.DataSource = CarBrandList;
+                
+
+
+                connect.Close();
+
+
+
+
+
+            }
+           
+            
+            catch (Exception hata)
+            {
+
+
+                MessageBox.Show("HATA MEYDANA GELDİ   " + hata.Message);
+                connect.Close();
+            }
         }
 
         private void CB_CarBrandCarUpdate_SelectedIndexChanged(object sender, EventArgs e)
@@ -106,39 +151,31 @@ namespace FUELSTATION
 
         private void BT_SaveNewCar_Click(object sender, EventArgs e)
         {
-           /* if(TB_EpostaNewCar.Text == ""||TB_LicensePlateNumberNewCar.Text=="")
-            { 
-                MessageBox.Show("LÜTFEN E POSTA VE PLAKA KISMINI BOŞ BIRAKMAYINIZ.");
-            }
-            else
-            {
+            //if(TB_EpostaNewCar.Text == ""||TB_LicensePlateNumberNewCar.Text=="")
+            //{ 
+            //    MessageBox.Show("LÜTFEN E POSTA VE PLAKA KISMINI BOŞ BIRAKMAYINIZ.");
+            //}
+            //else
+            //{
                 connect.Open();
-                SqlCommand giris = new SqlCommand("select * from USERS where Email='" + TB_EpostaNewCar.Text.Trim() + "'", connect);
-                SqlDataReader oku = giris.ExecuteReader();
-                if (oku.Read())
-                {
-                    if (oku["USID"].ToString() == "3")
-                    {
-                      
-
                         try
                         {
 
 
-                            string DBUpdate = "update USERS set Name='" + this.TB""  + "' where Email ='" + this.TB_EpostaNewCar.Text + "'; ";
-                            //müşteri yani 3. kullanıcı oluşturulduğunda otomatik bir sayı üretilecek bu sayı if döngüsüne alınıp aynı sayı üretilmediği kontrol edilecek 
+                            //  string DBUpdate = "update USERS set Name='"+ad+"' where Email ='"+email+"'";
+                            string add = "insert into UserCar (Email,LPN,BrandID,ModelID,Uid) values (@Email,@LPN,@BrandID,@ModelID,@Uid)";
+                            //müşteri y;ani 3. kullanıcı oluşturulduğunda otomatik bir sayı üretilecek bu sayı if döngüsüne alınıp aynı sayı üretilmediği kontrol edilecek 
                             //ekstradan veri tabanında plaka tablosunun içine araç girişi de olacak adı belki değiştirirsin böylelikle 1 kullanıcı 1 den fazla araç kaydı olmuş olacak.
-                            SqlConnection connect = new SqlConnection(connectionString);
-
-                            SqlCommand komut_Update = new SqlCommand(DBUpdate, connect);
-
-                            SqlDataReader read;
-
-
-                            connect.Open();
-                            read = komut_Update.ExecuteReader();
-                            MessageBox.Show("KAYDEDİLDİ");
+                       
+                            SqlCommand komut_Update = new SqlCommand(add, connect);
+                            komut_Update.Parameters.AddWithValue("@Email",email);
+                            komut_Update.Parameters.AddWithValue("@LPN", TB_LicensePlateNumberNewCar.Text);
+                            komut_Update.Parameters.AddWithValue("@BrandID", CB_CarBrandNewCar.SelectedValue);
+                            komut_Update.Parameters.AddWithValue("@ModelID", CB_CarModelNewCar.SelectedIndex+1);
+                            komut_Update.Parameters.AddWithValue("@Uid", uid);
+                            komut_Update.ExecuteNonQuery();
                             connect.Close();
+                            MessageBox.Show("KAYDEDİLDİ");
 
                         }
                         catch (Exception hata)
@@ -146,30 +183,12 @@ namespace FUELSTATION
                             MessageBox.Show("HATA MEYDANA GELDİ   " + hata.Message);
                             connect.Close();
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Lütfen Eski Emailinizi Kontrol Ediniz");
-                        connect.Close();
-                    }
-                }
-
-                else
-                {
-                    MessageBox.Show("Lütfen Eski Emailinizi Kontrol Ediniz");
-                    connect.Close();
-                }
-                }
-            */
         }
       
         private void BT_UpdateCar_Click(object sender, EventArgs e)
         {
-            if (TB_EpostaUpdateCar.Text == "")
-            {
-                MessageBox.Show("LÜTFEN E POSTA KISMINI BOŞ BIRAKMAYINIZ.");
-            }
-            else
+           
+          /*  else
             {
                 connect.Open();
                 SqlCommand giris = new SqlCommand("select * from USERS where Email='" + TB_EpostaUpdateCar.Text.Trim() + "'", connect);
@@ -212,8 +231,11 @@ namespace FUELSTATION
                     MessageBox.Show("Hatalı e posta");
                     connect.Close();
                 }
+          
 
             }
+          */
+
 
         }
     }

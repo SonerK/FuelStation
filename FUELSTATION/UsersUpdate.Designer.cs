@@ -42,7 +42,6 @@
             this.TB_Password = new System.Windows.Forms.TextBox();
             this.TB_TelephoneNumber = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.BT_CarUpdate = new System.Windows.Forms.Button();
             this.BT_Save = new System.Windows.Forms.Button();
             this.TB_E_Posta2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -166,16 +165,6 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
             this.dateTimePicker1.TabIndex = 18;
             // 
-            // BT_CarUpdate
-            // 
-            this.BT_CarUpdate.Location = new System.Drawing.Point(486, 141);
-            this.BT_CarUpdate.Name = "BT_CarUpdate";
-            this.BT_CarUpdate.Size = new System.Drawing.Size(179, 70);
-            this.BT_CarUpdate.TabIndex = 19;
-            this.BT_CarUpdate.Text = "Araç Bilgisini Güncelle";
-            this.BT_CarUpdate.UseVisualStyleBackColor = true;
-            this.BT_CarUpdate.Click += new System.EventHandler(this.BT_CarUpdate_Click);
-            // 
             // BT_Save
             // 
             this.BT_Save.Location = new System.Drawing.Point(229, 359);
@@ -229,7 +218,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.TB_E_Posta2);
             this.Controls.Add(this.BT_Save);
-            this.Controls.Add(this.BT_CarUpdate);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.TB_TelephoneNumber);
             this.Controls.Add(this.TB_Password);
@@ -268,7 +256,6 @@
         private System.Windows.Forms.TextBox TB_Password;
         private System.Windows.Forms.TextBox TB_TelephoneNumber;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Button BT_CarUpdate;
         private System.Windows.Forms.Button BT_Save;
         private System.Windows.Forms.TextBox TB_E_Posta2;
         private System.Windows.Forms.Label label2;
