@@ -45,12 +45,15 @@ namespace FUELSTATION
     partial void InsertDepartment(Department instance);
     partial void UpdateDepartment(Department instance);
     partial void DeleteDepartment(Department instance);
-    partial void InsertUSERS(USERS instance);
-    partial void UpdateUSERS(USERS instance);
-    partial void DeleteUSERS(USERS instance);
     partial void InsertUserCar(UserCar instance);
     partial void UpdateUserCar(UserCar instance);
     partial void DeleteUserCar(UserCar instance);
+    partial void InsertQUESTIONS(QUESTIONS instance);
+    partial void UpdateQUESTIONS(QUESTIONS instance);
+    partial void DeleteQUESTIONS(QUESTIONS instance);
+    partial void InsertUSERS(USERS instance);
+    partial void UpdateUSERS(USERS instance);
+    partial void DeleteUSERS(USERS instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -123,19 +126,27 @@ namespace FUELSTATION
 			}
 		}
 		
-		public System.Data.Linq.Table<USERS> USERS
-		{
-			get
-			{
-				return this.GetTable<USERS>();
-			}
-		}
-		
 		public System.Data.Linq.Table<UserCar> UserCar
 		{
 			get
 			{
 				return this.GetTable<UserCar>();
+			}
+		}
+		
+		public System.Data.Linq.Table<QUESTIONS> QUESTIONS
+		{
+			get
+			{
+				return this.GetTable<QUESTIONS>();
+			}
+		}
+		
+		public System.Data.Linq.Table<USERS> USERS
+		{
+			get
+			{
+				return this.GetTable<USERS>();
 			}
 		}
 	}
@@ -150,9 +161,9 @@ namespace FUELSTATION
 		
 		private string _BrandName;
 		
-		private EntitySet<USERS> _USERS;
-		
 		private EntitySet<UserCar> _UserCar;
+		
+		private EntitySet<USERS> _USERS;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -166,8 +177,8 @@ namespace FUELSTATION
 		
 		public CarBrand()
 		{
-			this._USERS = new EntitySet<USERS>(new Action<USERS>(this.attach_USERS), new Action<USERS>(this.detach_USERS));
 			this._UserCar = new EntitySet<UserCar>(new Action<UserCar>(this.attach_UserCar), new Action<UserCar>(this.detach_UserCar));
+			this._USERS = new EntitySet<USERS>(new Action<USERS>(this.attach_USERS), new Action<USERS>(this.detach_USERS));
 			OnCreated();
 		}
 		
@@ -211,19 +222,6 @@ namespace FUELSTATION
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarBrand_USERS", Storage="_USERS", ThisKey="BrandID", OtherKey="BrandID")]
-		public EntitySet<USERS> USERS
-		{
-			get
-			{
-				return this._USERS;
-			}
-			set
-			{
-				this._USERS.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarBrand_UserCar", Storage="_UserCar", ThisKey="BrandID", OtherKey="BrandID")]
 		public EntitySet<UserCar> UserCar
 		{
@@ -234,6 +232,19 @@ namespace FUELSTATION
 			set
 			{
 				this._UserCar.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarBrand_USERS", Storage="_USERS", ThisKey="BrandID", OtherKey="BrandID")]
+		public EntitySet<USERS> USERS
+		{
+			get
+			{
+				return this._USERS;
+			}
+			set
+			{
+				this._USERS.Assign(value);
 			}
 		}
 		
@@ -257,18 +268,6 @@ namespace FUELSTATION
 			}
 		}
 		
-		private void attach_USERS(USERS entity)
-		{
-			this.SendPropertyChanging();
-			entity.CarBrand = this;
-		}
-		
-		private void detach_USERS(USERS entity)
-		{
-			this.SendPropertyChanging();
-			entity.CarBrand = null;
-		}
-		
 		private void attach_UserCar(UserCar entity)
 		{
 			this.SendPropertyChanging();
@@ -276,6 +275,18 @@ namespace FUELSTATION
 		}
 		
 		private void detach_UserCar(UserCar entity)
+		{
+			this.SendPropertyChanging();
+			entity.CarBrand = null;
+		}
+		
+		private void attach_USERS(USERS entity)
+		{
+			this.SendPropertyChanging();
+			entity.CarBrand = this;
+		}
+		
+		private void detach_USERS(USERS entity)
 		{
 			this.SendPropertyChanging();
 			entity.CarBrand = null;
@@ -294,9 +305,9 @@ namespace FUELSTATION
 		
 		private string _ModelName;
 		
-		private EntitySet<USERS> _USERS;
-		
 		private EntitySet<UserCar> _UserCar;
+		
+		private EntitySet<USERS> _USERS;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -312,8 +323,8 @@ namespace FUELSTATION
 		
 		public CarModel()
 		{
-			this._USERS = new EntitySet<USERS>(new Action<USERS>(this.attach_USERS), new Action<USERS>(this.detach_USERS));
 			this._UserCar = new EntitySet<UserCar>(new Action<UserCar>(this.attach_UserCar), new Action<UserCar>(this.detach_UserCar));
+			this._USERS = new EntitySet<USERS>(new Action<USERS>(this.attach_USERS), new Action<USERS>(this.detach_USERS));
 			OnCreated();
 		}
 		
@@ -377,19 +388,6 @@ namespace FUELSTATION
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarModel_USERS", Storage="_USERS", ThisKey="ModelID", OtherKey="ModelID")]
-		public EntitySet<USERS> USERS
-		{
-			get
-			{
-				return this._USERS;
-			}
-			set
-			{
-				this._USERS.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarModel_UserCar", Storage="_UserCar", ThisKey="ModelID", OtherKey="ModelID")]
 		public EntitySet<UserCar> UserCar
 		{
@@ -400,6 +398,19 @@ namespace FUELSTATION
 			set
 			{
 				this._UserCar.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarModel_USERS", Storage="_USERS", ThisKey="ModelID", OtherKey="ModelID")]
+		public EntitySet<USERS> USERS
+		{
+			get
+			{
+				return this._USERS;
+			}
+			set
+			{
+				this._USERS.Assign(value);
 			}
 		}
 		
@@ -423,18 +434,6 @@ namespace FUELSTATION
 			}
 		}
 		
-		private void attach_USERS(USERS entity)
-		{
-			this.SendPropertyChanging();
-			entity.CarModel = this;
-		}
-		
-		private void detach_USERS(USERS entity)
-		{
-			this.SendPropertyChanging();
-			entity.CarModel = null;
-		}
-		
 		private void attach_UserCar(UserCar entity)
 		{
 			this.SendPropertyChanging();
@@ -442,6 +441,18 @@ namespace FUELSTATION
 		}
 		
 		private void detach_UserCar(UserCar entity)
+		{
+			this.SendPropertyChanging();
+			entity.CarModel = null;
+		}
+		
+		private void attach_USERS(USERS entity)
+		{
+			this.SendPropertyChanging();
+			entity.CarModel = this;
+		}
+		
+		private void detach_USERS(USERS entity)
 		{
 			this.SendPropertyChanging();
 			entity.CarModel = null;
@@ -814,6 +825,360 @@ namespace FUELSTATION
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserCar")]
+	public partial class UserCar : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _UId;
+		
+		private string _Email;
+		
+		private string _LPN;
+		
+		private System.Nullable<int> _BrandID;
+		
+		private System.Nullable<int> _ModelID;
+		
+		private EntityRef<CarBrand> _CarBrand;
+		
+		private EntityRef<CarModel> _CarModel;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUIdChanging(int value);
+    partial void OnUIdChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnLPNChanging(string value);
+    partial void OnLPNChanged();
+    partial void OnBrandIDChanging(System.Nullable<int> value);
+    partial void OnBrandIDChanged();
+    partial void OnModelIDChanging(System.Nullable<int> value);
+    partial void OnModelIDChanged();
+    #endregion
+		
+		public UserCar()
+		{
+			this._CarBrand = default(EntityRef<CarBrand>);
+			this._CarModel = default(EntityRef<CarModel>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int UId
+		{
+			get
+			{
+				return this._UId;
+			}
+			set
+			{
+				if ((this._UId != value))
+				{
+					this.OnUIdChanging(value);
+					this.SendPropertyChanging();
+					this._UId = value;
+					this.SendPropertyChanged("UId");
+					this.OnUIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(50)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LPN", DbType="VarChar(8) NOT NULL", CanBeNull=false)]
+		public string LPN
+		{
+			get
+			{
+				return this._LPN;
+			}
+			set
+			{
+				if ((this._LPN != value))
+				{
+					this.OnLPNChanging(value);
+					this.SendPropertyChanging();
+					this._LPN = value;
+					this.SendPropertyChanged("LPN");
+					this.OnLPNChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BrandID", DbType="Int")]
+		public System.Nullable<int> BrandID
+		{
+			get
+			{
+				return this._BrandID;
+			}
+			set
+			{
+				if ((this._BrandID != value))
+				{
+					if (this._CarBrand.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBrandIDChanging(value);
+					this.SendPropertyChanging();
+					this._BrandID = value;
+					this.SendPropertyChanged("BrandID");
+					this.OnBrandIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModelID", DbType="Int")]
+		public System.Nullable<int> ModelID
+		{
+			get
+			{
+				return this._ModelID;
+			}
+			set
+			{
+				if ((this._ModelID != value))
+				{
+					if (this._CarModel.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnModelIDChanging(value);
+					this.SendPropertyChanging();
+					this._ModelID = value;
+					this.SendPropertyChanged("ModelID");
+					this.OnModelIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarBrand_UserCar", Storage="_CarBrand", ThisKey="BrandID", OtherKey="BrandID", IsForeignKey=true)]
+		public CarBrand CarBrand
+		{
+			get
+			{
+				return this._CarBrand.Entity;
+			}
+			set
+			{
+				CarBrand previousValue = this._CarBrand.Entity;
+				if (((previousValue != value) 
+							|| (this._CarBrand.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._CarBrand.Entity = null;
+						previousValue.UserCar.Remove(this);
+					}
+					this._CarBrand.Entity = value;
+					if ((value != null))
+					{
+						value.UserCar.Add(this);
+						this._BrandID = value.BrandID;
+					}
+					else
+					{
+						this._BrandID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("CarBrand");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarModel_UserCar", Storage="_CarModel", ThisKey="ModelID", OtherKey="ModelID", IsForeignKey=true)]
+		public CarModel CarModel
+		{
+			get
+			{
+				return this._CarModel.Entity;
+			}
+			set
+			{
+				CarModel previousValue = this._CarModel.Entity;
+				if (((previousValue != value) 
+							|| (this._CarModel.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._CarModel.Entity = null;
+						previousValue.UserCar.Remove(this);
+					}
+					this._CarModel.Entity = value;
+					if ((value != null))
+					{
+						value.UserCar.Add(this);
+						this._ModelID = value.ModelID;
+					}
+					else
+					{
+						this._ModelID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("CarModel");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.QUESTIONS")]
+	public partial class QUESTIONS : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _QUESTIONID;
+		
+		private string _QUESTIONS1;
+		
+		private EntitySet<USERS> _USERS;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnQUESTIONIDChanging(int value);
+    partial void OnQUESTIONIDChanged();
+    partial void OnQUESTIONS1Changing(string value);
+    partial void OnQUESTIONS1Changed();
+    #endregion
+		
+		public QUESTIONS()
+		{
+			this._USERS = new EntitySet<USERS>(new Action<USERS>(this.attach_USERS), new Action<USERS>(this.detach_USERS));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QUESTIONID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int QUESTIONID
+		{
+			get
+			{
+				return this._QUESTIONID;
+			}
+			set
+			{
+				if ((this._QUESTIONID != value))
+				{
+					this.OnQUESTIONIDChanging(value);
+					this.SendPropertyChanging();
+					this._QUESTIONID = value;
+					this.SendPropertyChanged("QUESTIONID");
+					this.OnQUESTIONIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="QUESTIONS", Storage="_QUESTIONS1", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string QUESTIONS1
+		{
+			get
+			{
+				return this._QUESTIONS1;
+			}
+			set
+			{
+				if ((this._QUESTIONS1 != value))
+				{
+					this.OnQUESTIONS1Changing(value);
+					this.SendPropertyChanging();
+					this._QUESTIONS1 = value;
+					this.SendPropertyChanged("QUESTIONS1");
+					this.OnQUESTIONS1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QUESTIONS_USERS", Storage="_USERS", ThisKey="QUESTIONID", OtherKey="QUESTIONSID")]
+		public EntitySet<USERS> USERS
+		{
+			get
+			{
+				return this._USERS;
+			}
+			set
+			{
+				this._USERS.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_USERS(USERS entity)
+		{
+			this.SendPropertyChanging();
+			entity.QUESTIONS = this;
+		}
+		
+		private void detach_USERS(USERS entity)
+		{
+			this.SendPropertyChanging();
+			entity.QUESTIONS = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.USERS")]
 	public partial class USERS : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -856,6 +1221,10 @@ namespace FUELSTATION
 		
 		private System.Nullable<int> _DistrictID;
 		
+		private string _ANSWERS;
+		
+		private System.Nullable<int> _QUESTIONSID;
+		
 		private EntityRef<CarBrand> _CarBrand;
 		
 		private EntityRef<City> _City;
@@ -865,6 +1234,8 @@ namespace FUELSTATION
 		private EntityRef<District> _District;
 		
 		private EntityRef<CarModel> _CarModel;
+		
+		private EntityRef<QUESTIONS> _QUESTIONS;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -906,6 +1277,10 @@ namespace FUELSTATION
     partial void OnCityIDChanged();
     partial void OnDistrictIDChanging(System.Nullable<int> value);
     partial void OnDistrictIDChanged();
+    partial void OnANSWERSChanging(string value);
+    partial void OnANSWERSChanged();
+    partial void OnQUESTIONSIDChanging(System.Nullable<int> value);
+    partial void OnQUESTIONSIDChanged();
     #endregion
 		
 		public USERS()
@@ -915,6 +1290,7 @@ namespace FUELSTATION
 			this._Department = default(EntityRef<Department>);
 			this._District = default(EntityRef<District>);
 			this._CarModel = default(EntityRef<CarModel>);
+			this._QUESTIONS = default(EntityRef<QUESTIONS>);
 			OnCreated();
 		}
 		
@@ -978,7 +1354,7 @@ namespace FUELSTATION
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LPN", DbType="VarChar(8) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LPN", DbType="VarChar(8)")]
 		public string LPN
 		{
 			get
@@ -1298,6 +1674,50 @@ namespace FUELSTATION
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ANSWERS", DbType="NVarChar(200)")]
+		public string ANSWERS
+		{
+			get
+			{
+				return this._ANSWERS;
+			}
+			set
+			{
+				if ((this._ANSWERS != value))
+				{
+					this.OnANSWERSChanging(value);
+					this.SendPropertyChanging();
+					this._ANSWERS = value;
+					this.SendPropertyChanged("ANSWERS");
+					this.OnANSWERSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QUESTIONSID", DbType="Int")]
+		public System.Nullable<int> QUESTIONSID
+		{
+			get
+			{
+				return this._QUESTIONSID;
+			}
+			set
+			{
+				if ((this._QUESTIONSID != value))
+				{
+					if (this._QUESTIONS.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnQUESTIONSIDChanging(value);
+					this.SendPropertyChanging();
+					this._QUESTIONSID = value;
+					this.SendPropertyChanged("QUESTIONSID");
+					this.OnQUESTIONSIDChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarBrand_USERS", Storage="_CarBrand", ThisKey="BrandID", OtherKey="BrandID", IsForeignKey=true)]
 		public CarBrand CarBrand
 		{
@@ -1468,242 +1888,36 @@ namespace FUELSTATION
 			}
 		}
 		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserCar")]
-	public partial class UserCar : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _UId;
-		
-		private string _Email;
-		
-		private string _LPN;
-		
-		private System.Nullable<int> _BrandID;
-		
-		private System.Nullable<int> _ModelID;
-		
-		private EntityRef<CarBrand> _CarBrand;
-		
-		private EntityRef<CarModel> _CarModel;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnUIdChanging(int value);
-    partial void OnUIdChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnLPNChanging(string value);
-    partial void OnLPNChanged();
-    partial void OnBrandIDChanging(System.Nullable<int> value);
-    partial void OnBrandIDChanged();
-    partial void OnModelIDChanging(System.Nullable<int> value);
-    partial void OnModelIDChanged();
-    #endregion
-		
-		public UserCar()
-		{
-			this._CarBrand = default(EntityRef<CarBrand>);
-			this._CarModel = default(EntityRef<CarModel>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int UId
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QUESTIONS_USERS", Storage="_QUESTIONS", ThisKey="QUESTIONSID", OtherKey="QUESTIONID", IsForeignKey=true)]
+		public QUESTIONS QUESTIONS
 		{
 			get
 			{
-				return this._UId;
+				return this._QUESTIONS.Entity;
 			}
 			set
 			{
-				if ((this._UId != value))
-				{
-					this.OnUIdChanging(value);
-					this.SendPropertyChanging();
-					this._UId = value;
-					this.SendPropertyChanged("UId");
-					this.OnUIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(50)")]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LPN", DbType="VarChar(8) NOT NULL", CanBeNull=false)]
-		public string LPN
-		{
-			get
-			{
-				return this._LPN;
-			}
-			set
-			{
-				if ((this._LPN != value))
-				{
-					this.OnLPNChanging(value);
-					this.SendPropertyChanging();
-					this._LPN = value;
-					this.SendPropertyChanged("LPN");
-					this.OnLPNChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BrandID", DbType="Int")]
-		public System.Nullable<int> BrandID
-		{
-			get
-			{
-				return this._BrandID;
-			}
-			set
-			{
-				if ((this._BrandID != value))
-				{
-					if (this._CarBrand.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnBrandIDChanging(value);
-					this.SendPropertyChanging();
-					this._BrandID = value;
-					this.SendPropertyChanged("BrandID");
-					this.OnBrandIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModelID", DbType="Int")]
-		public System.Nullable<int> ModelID
-		{
-			get
-			{
-				return this._ModelID;
-			}
-			set
-			{
-				if ((this._ModelID != value))
-				{
-					if (this._CarModel.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnModelIDChanging(value);
-					this.SendPropertyChanging();
-					this._ModelID = value;
-					this.SendPropertyChanged("ModelID");
-					this.OnModelIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarBrand_UserCar", Storage="_CarBrand", ThisKey="BrandID", OtherKey="BrandID", IsForeignKey=true)]
-		public CarBrand CarBrand
-		{
-			get
-			{
-				return this._CarBrand.Entity;
-			}
-			set
-			{
-				CarBrand previousValue = this._CarBrand.Entity;
+				QUESTIONS previousValue = this._QUESTIONS.Entity;
 				if (((previousValue != value) 
-							|| (this._CarBrand.HasLoadedOrAssignedValue == false)))
+							|| (this._QUESTIONS.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._CarBrand.Entity = null;
-						previousValue.UserCar.Remove(this);
+						this._QUESTIONS.Entity = null;
+						previousValue.USERS.Remove(this);
 					}
-					this._CarBrand.Entity = value;
+					this._QUESTIONS.Entity = value;
 					if ((value != null))
 					{
-						value.UserCar.Add(this);
-						this._BrandID = value.BrandID;
+						value.USERS.Add(this);
+						this._QUESTIONSID = value.QUESTIONID;
 					}
 					else
 					{
-						this._BrandID = default(Nullable<int>);
+						this._QUESTIONSID = default(Nullable<int>);
 					}
-					this.SendPropertyChanged("CarBrand");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarModel_UserCar", Storage="_CarModel", ThisKey="ModelID", OtherKey="ModelID", IsForeignKey=true)]
-		public CarModel CarModel
-		{
-			get
-			{
-				return this._CarModel.Entity;
-			}
-			set
-			{
-				CarModel previousValue = this._CarModel.Entity;
-				if (((previousValue != value) 
-							|| (this._CarModel.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._CarModel.Entity = null;
-						previousValue.UserCar.Remove(this);
-					}
-					this._CarModel.Entity = value;
-					if ((value != null))
-					{
-						value.UserCar.Add(this);
-						this._ModelID = value.ModelID;
-					}
-					else
-					{
-						this._ModelID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("CarModel");
+					this.SendPropertyChanged("QUESTIONS");
 				}
 			}
 		}

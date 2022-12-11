@@ -45,14 +45,17 @@ namespace FUELSTATION
 
 
         }
-
-       /* void ClientNumber()
+        void Questions()
         {
-           
-            
-           
+            SqlCommand komutQ = new SqlCommand("select * from QUESTIONS", connect);
+            SqlDataAdapter adp = new SqlDataAdapter(komutQ);
+            DataTable data = new DataTable();
+            adp.Fill(data);
+            CB_Questions.ValueMember = "QUESTIONID";
+            CB_Questions.DisplayMember = "QUESTIONS";
+            CB_Questions.DataSource = data;
         }
-       */
+   
         private string Md5(string text)
         {
             MD5 MD5Encrypting = new MD5CryptoServiceProvider();
@@ -84,10 +87,8 @@ namespace FUELSTATION
             City();
             CarBrand();
             FuelType();
-            TB_ClientNumber.Visible = false;
-            Random Number = new Random();
-            int ClientNumber = Number.Next(10000,99999);
-            TB_ClientNumber.Text = ClientNumber.ToString();
+            Questions();
+          
 
 
         }
@@ -98,8 +99,8 @@ namespace FUELSTATION
             {
                 if (connect.State == ConnectionState.Closed)
                     connect.Open();
-                string save_Users = "insert into USERS (UAP,Name,SurName,Password,Email,Phone,Birthday,USID,FuelTypeID,BrandID,ModelID,CityID,DistrictID,LPN) " +
-                    "values (@UAP,@Name,@SurName,@Password,@Email,@Phone,@Birthday,@USID,@FuelTypeID,@BrandID,@ModelID,@CityID,@DistrictID,@LPN)";
+                string save_Users = "insert into USERS (UAP,Name,SurName,Password,Email,Phone,Birthday,USID,FuelTypeID,BrandID,ModelID,CityID,DistrictID,LPN,QUESTIONSID,ANSWERS) " +
+                    "values (@UAP,@Name,@SurName,@Password,@Email,@Phone,@Birthday,@USID,@FuelTypeID,@BrandID,@ModelID,@CityID,@DistrictID,@LPN,@QUESTIONSID,@ANSWERS)";
                 SqlCommand komut_Users = new SqlCommand(save_Users, connect);
                komut_Users.Parameters.AddWithValue("@Name",TB_Name.Text );
                 komut_Users.Parameters.AddWithValue("@SurName",TB_SurName.Text );
@@ -113,7 +114,10 @@ namespace FUELSTATION
                 komut_Users.Parameters.AddWithValue("@ModelID", Convert.ToInt32((CB_CarModel.SelectedIndex + 1)));
                 komut_Users.Parameters.AddWithValue("@CityID", Convert.ToInt32(CB_City.SelectedValue));
                 komut_Users.Parameters.AddWithValue("@DistrictID", Convert.ToInt32((CB_District.SelectedIndex + 1)));
-               // komut_Users.Parameters.AddWithValue("@ClientNumber", TB_ClientNumber.Text);
+                komut_Users.Parameters.AddWithValue("@QUESTIONSID", Convert.ToInt32(CB_Questions.SelectedValue));
+                komut_Users.Parameters.AddWithValue("@ANSWERS", Md5(TB_Answers.Text));
+               
+            
                 komut_Users.Parameters.AddWithValue("@UAP", 1);
                 komut_Users.Parameters.AddWithValue("@LPN", TB_LıcensePlateNumber.Text);
 
@@ -127,7 +131,7 @@ namespace FUELSTATION
                 komut_UserCar.Parameters.AddWithValue("@Email", TB_E_Posta.Text.Trim().ToLower());
                 komut_UserCar.Parameters.AddWithValue("@BrandID", Convert.ToInt32(CB_CarBrand.SelectedValue));
                 komut_UserCar.Parameters.AddWithValue("@ModelID", Convert.ToInt32((CB_CarModel.SelectedIndex + 1)));
-              //  komut_UserCar.Parameters.AddWithValue("@ClientNumber", TB_ClientNumber.Text);
+              
                 komut_UserCar.Parameters.AddWithValue("@LPN", TB_LıcensePlateNumber.Text);
 
                 komut_UserCar.ExecuteNonQuery();
@@ -171,7 +175,10 @@ namespace FUELSTATION
             CB_CarModel.DataSource = CarModelList;
         }
 
-       
+        private void CB_FuelType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
     }
     

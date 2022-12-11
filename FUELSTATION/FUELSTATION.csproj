@@ -82,16 +82,28 @@
     <Compile Include="AdminUpdateDelete.Designer.cs">
       <DependentUpon>AdminUpdateDelete.cs</DependentUpon>
     </Compile>
-    <Compile Include="UsersUpdate.cs">
+    <Compile Include="ForgotPassword.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UsersUpdate.Designer.cs">
-      <DependentUpon>UsersUpdate.cs</DependentUpon>
+    <Compile Include="ForgotPassword.Designer.cs">
+      <DependentUpon>ForgotPassword.cs</DependentUpon>
     </Compile>
     <Compile Include="GASSTATIONDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GASSTATIONDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="PasswordUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PasswordUpdate.Designer.cs">
+      <DependentUpon>PasswordUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UsersUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UsersUpdate.Designer.cs">
+      <DependentUpon>UsersUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="LOGIN.cs">
       <SubType>Form</SubType>
@@ -136,6 +148,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Car.resx">
       <DependentUpon>Car.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ForgotPassword.resx">
+      <DependentUpon>ForgotPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PasswordUpdate.resx">
+      <DependentUpon>PasswordUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsersUpdate.resx">
       <DependentUpon>UsersUpdate.cs</DependentUpon>

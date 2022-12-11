@@ -18,3 +18,5 @@ C:\Users\snrkt\source\repos\FUELSTATION\FUELSTATION\obj\Debug\FUELSTATION.pdb
 C:\Users\snrkt\source\repos\FUELSTATION\FUELSTATION\obj\Debug\FUELSTATION.AdminUpdateDelete.resources
 C:\Users\snrkt\source\repos\FUELSTATION\FUELSTATION\obj\Debug\FUELSTATION.Car.resources
 C:\Users\snrkt\source\repos\FUELSTATION\FUELSTATION\obj\Debug\FUELSTATION.UsersUpdate.resources
+C:\Users\snrkt\source\repos\FUELSTATION\FUELSTATION\obj\Debug\FUELSTATION.ForgotPassword.resources
+C:\Users\snrkt\source\repos\FUELSTATION\FUELSTATION\obj\Debug\FUELSTATION.PasswordUpdate.resources

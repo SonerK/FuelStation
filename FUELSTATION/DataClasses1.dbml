@@ -4,8 +4,8 @@
     <Type Name="CarBrand">
       <Column Name="BrandID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="BrandName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Association Name="CarBrand_USERS" Member="USERS" ThisKey="BrandID" OtherKey="BrandID" Type="USERS" />
       <Association Name="CarBrand_UserCar" Member="UserCar" ThisKey="BrandID" OtherKey="BrandID" Type="UserCar" />
+      <Association Name="CarBrand_USERS" Member="USERS" ThisKey="BrandID" OtherKey="BrandID" Type="USERS" />
     </Type>
   </Table>
   <Table Name="dbo.CarModel" Member="CarModel">
@@ -13,8 +13,8 @@
       <Column Name="ModelID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="BrandID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ModelName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Association Name="CarModel_USERS" Member="USERS" ThisKey="ModelID" OtherKey="ModelID" Type="USERS" />
       <Association Name="CarModel_UserCar" Member="UserCar" ThisKey="ModelID" OtherKey="ModelID" Type="UserCar" />
+      <Association Name="CarModel_USERS" Member="USERS" ThisKey="ModelID" OtherKey="ModelID" Type="USERS" />
     </Type>
   </Table>
   <Table Name="dbo.City" Member="City">
@@ -39,12 +39,30 @@
       <Association Name="Department_USERS" Member="USERS" ThisKey="DepID" OtherKey="DepID" Type="USERS" />
     </Type>
   </Table>
+  <Table Name="dbo.UserCar" Member="UserCar">
+    <Type Name="UserCar">
+      <Column Name="UId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LPN" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="BrandID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ModelID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="CarBrand_UserCar" Member="CarBrand" ThisKey="BrandID" OtherKey="BrandID" Type="CarBrand" IsForeignKey="true" />
+      <Association Name="CarModel_UserCar" Member="CarModel" ThisKey="ModelID" OtherKey="ModelID" Type="CarModel" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.QUESTIONS" Member="QUESTIONS">
+    <Type Name="QUESTIONS">
+      <Column Name="QUESTIONID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="QUESTIONS" Member="QUESTIONS1" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Association Name="QUESTIONS_USERS" Member="USERS" ThisKey="QUESTIONID" OtherKey="QUESTIONSID" Type="USERS" />
+    </Type>
+  </Table>
   <Table Name="dbo.USERS" Member="USERS">
     <Type Name="USERS">
       <Column Name="UId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="StationCode" Type="System.String" DbType="Char(10)" CanBeNull="true" />
       <Column Name="PersonNumber" Type="System.String" DbType="Char(10)" CanBeNull="true" />
-      <Column Name="LPN" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="LPN" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="SurName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
@@ -59,22 +77,14 @@
       <Column Name="ModelID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CityID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="DistrictID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ANSWERS" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="QUESTIONSID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="CarBrand_USERS" Member="CarBrand" ThisKey="BrandID" OtherKey="BrandID" Type="CarBrand" IsForeignKey="true" />
       <Association Name="City_USERS" Member="City" ThisKey="CityID" OtherKey="CityID" Type="City" IsForeignKey="true" />
       <Association Name="Department_USERS" Member="Department" ThisKey="DepID" OtherKey="DepID" Type="Department" IsForeignKey="true" />
       <Association Name="District_USERS" Member="District" ThisKey="DistrictID" OtherKey="DistrictID" Type="District" IsForeignKey="true" />
       <Association Name="CarModel_USERS" Member="CarModel" ThisKey="ModelID" OtherKey="ModelID" Type="CarModel" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.UserCar" Member="UserCar">
-    <Type Name="UserCar">
-      <Column Name="UId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="LPN" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
-      <Column Name="BrandID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ModelID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="CarBrand_UserCar" Member="CarBrand" ThisKey="BrandID" OtherKey="BrandID" Type="CarBrand" IsForeignKey="true" />
-      <Association Name="CarModel_UserCar" Member="CarModel" ThisKey="ModelID" OtherKey="ModelID" Type="CarModel" IsForeignKey="true" />
+      <Association Name="QUESTIONS_USERS" Member="QUESTIONS" ThisKey="QUESTIONSID" OtherKey="QUESTIONID" Type="QUESTIONS" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

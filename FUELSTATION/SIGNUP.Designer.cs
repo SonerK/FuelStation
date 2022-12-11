@@ -53,7 +53,10 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.CB_District = new System.Windows.Forms.ComboBox();
-            this.TB_ClientNumber = new System.Windows.Forms.TextBox();
+            this.CB_Questions = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.TB_Answers = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TB_Name
@@ -124,6 +127,7 @@
             this.CB_FuelType.Name = "CB_FuelType";
             this.CB_FuelType.Size = new System.Drawing.Size(121, 24);
             this.CB_FuelType.TabIndex = 9;
+            this.CB_FuelType.SelectedIndexChanged += new System.EventHandler(this.CB_FuelType_SelectedIndexChanged);
             // 
             // CB_CarBrand
             // 
@@ -144,7 +148,7 @@
             // 
             // BT_Save
             // 
-            this.BT_Save.Location = new System.Drawing.Point(491, 389);
+            this.BT_Save.Location = new System.Drawing.Point(675, 415);
             this.BT_Save.Name = "BT_Save";
             this.BT_Save.Size = new System.Drawing.Size(113, 23);
             this.BT_Save.TabIndex = 13;
@@ -268,19 +272,48 @@
             this.CB_District.Size = new System.Drawing.Size(121, 24);
             this.CB_District.TabIndex = 7;
             // 
-            // TB_ClientNumber
+            // CB_Questions
             // 
-            this.TB_ClientNumber.Location = new System.Drawing.Point(417, 259);
-            this.TB_ClientNumber.Name = "TB_ClientNumber";
-            this.TB_ClientNumber.Size = new System.Drawing.Size(121, 22);
-            this.TB_ClientNumber.TabIndex = 29;
+            this.CB_Questions.FormattingEnabled = true;
+            this.CB_Questions.Location = new System.Drawing.Point(324, 287);
+            this.CB_Questions.Name = "CB_Questions";
+            this.CB_Questions.Size = new System.Drawing.Size(360, 24);
+            this.CB_Questions.TabIndex = 30;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(321, 254);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(272, 16);
+            this.label2.TabIndex = 31;
+            this.label2.Text = "LÜTFEN BİR GÜVENLİK SORUSU SEÇİNİZ.";
+            // 
+            // TB_Answers
+            // 
+            this.TB_Answers.Location = new System.Drawing.Point(324, 347);
+            this.TB_Answers.Name = "TB_Answers";
+            this.TB_Answers.Size = new System.Drawing.Size(360, 22);
+            this.TB_Answers.TabIndex = 32;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(297, 328);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(337, 16);
+            this.label5.TabIndex = 33;
+            this.label5.Text = "LÜTFEN GÜVENLİK SORUSUNUN CEVABINI YAZINIZ";
             // 
             // SIGNUP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.TB_ClientNumber);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.TB_Answers);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.CB_Questions);
             this.Controls.Add(this.CB_District);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
@@ -341,6 +374,9 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox CB_District;
-        private System.Windows.Forms.TextBox TB_ClientNumber;
+        private System.Windows.Forms.ComboBox CB_Questions;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox TB_Answers;
+        private System.Windows.Forms.Label label5;
     }
 }

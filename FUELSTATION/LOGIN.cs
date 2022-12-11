@@ -56,7 +56,7 @@ namespace FUELSTATION
                 {
 
                     connect.Open();
-                    SqlCommand giris = new SqlCommand("select * from USERS where Email='" + TB_E_Posta.Text.Trim() + "' and Password='" + Md5(TB_Password.Text) + "'", connect);
+                    SqlCommand giris = new SqlCommand("select * from USERS where Email='" + TB_E_Posta.Text.Trim() + "' and Password='" +Md5(TB_Password.Text) + "'", connect);
                     SqlDataReader oku = giris.ExecuteReader();
 
 
@@ -105,6 +105,18 @@ namespace FUELSTATION
                     MessageBox.Show("HATA MEYDANA GELDİ   " + hata.Message);
                 }
             }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ForgotPassword forgotPassword = new ForgotPassword();
+            forgotPassword.Show();
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            SIGNUP sıgnup = new SIGNUP();
+            sıgnup.Show();
         }
     }
 }
