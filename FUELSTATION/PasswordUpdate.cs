@@ -21,6 +21,7 @@ namespace FUELSTATION
             email = email_;
         }
         string email;
+        string connectionString = "Data Source=TULPAR;Initial Catalog=GASSTATION;Integrated Security=True";
         SqlConnection connect = new SqlConnection("Data Source=TULPAR;Initial Catalog=GASSTATION;Integrated Security=True");
         private string Md5(string text)
         {
@@ -65,36 +66,59 @@ namespace FUELSTATION
 
         private void BT_Save2_Click(object sender, EventArgs e)
         {
-            if (TB_PassUpdate1.Text!=TB_PassUpdate2.Text) 
+            if (TB_PassUpdate1.Text != TB_PassUpdate2.Text)
             {
                 MessageBox.Show("Girdiğiniz Şifreler Eşleşmedi.Lütfen Tekrar Deneyiniz.");
             }
             else
             {
-                try
-                {
+                connect.Open();
+                try {
 
-                    string connectionString = "Data Source=TULPAR;Initial Catalog=GASSTATION;Integrated Security=True";
+                    SqlCommand giris = new SqlCommand("select * from  USERS where Email='" + email + "'", connect);
+
+                    SqlDataReader oku = giris.ExecuteReader();
+                    if (oku.Read())
+
+                    {
+                        if (oku["Password"].ToString() == Md5(TB_PassUpdate2.Text))
+                        {
+                            MessageBox.Show("Yeni Şifre Eski Şifrenizle Aynı Olamaz");
+                            connect.Close();
+                        }
+                       
 
 
-                    string DBUpdate = "update USERS set Password='" + Md5(this.TB_PassUpdate2.Text) + "' where Email ='" + email + "'; ";
-                    SqlConnection connect = new SqlConnection(connectionString);
-
-                    SqlCommand komut_Update = new SqlCommand(DBUpdate, connect);
-
-                    SqlDataReader read;
 
 
-                    connect.Open();
-                    read = komut_Update.ExecuteReader();
-                    MessageBox.Show("KAYDEDİLDİ");
-                   
+                    else
+                        {
+                            
 
+                            string DBUpdate = "update USERS set Password='" + Md5(this.TB_PassUpdate2.Text) + "' where Email ='" + email + "'; ";
+                            SqlConnection connect = new SqlConnection(connectionString);
+                            connect.Open();
+
+                            SqlCommand komut_Update = new SqlCommand(DBUpdate, connect);
+
+                            SqlDataReader read;
+
+
+
+                            read = komut_Update.ExecuteReader();
+                            MessageBox.Show("KAYDEDİLDİ");
+
+
+
+                        }
+
+                    }
                 }
                 catch (Exception hata)
                 {
                     MessageBox.Show("HATA MEYDANA GELDİ   " + hata.Message);
                 }
+            
             }
         }
     }
