@@ -23,9 +23,23 @@ namespace FUELSTATION
         }
         string ad, soyad, uid, email;
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Campaign campaign = new Campaign();
+            campaign.Show();
+            this.Close();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            StatyonCoin statyoncoin = new StatyonCoin(ad, soyad, email);
+            statyoncoin.Show();
+            this.Close();
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
-            UsersUpdate update= new UsersUpdate();
+            UsersUpdate update= new UsersUpdate(ad, soyad, uid, email);
             update.Show();
             this.Close();
 

@@ -15,10 +15,16 @@ namespace FUELSTATION
 {
     public partial class UsersUpdate : Form
     {
-               public UsersUpdate()
+        string ad, soyad, uid, email;
+        public UsersUpdate(string name, string surname, string uid_, string email_)
         {
+
             InitializeComponent();
-          
+            ad = name;
+            soyad = surname;
+            uid = uid_;
+            email = email_;
+
         }
       
         private void UsersUpdate_Load(object sender, EventArgs e)

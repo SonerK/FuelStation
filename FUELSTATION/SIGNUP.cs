@@ -137,9 +137,22 @@ namespace FUELSTATION
                 komut_UserCar.ExecuteNonQuery();
 
 
-                connect.Close();
 
+                string save_StatyonCoin = "insert into COIN(Coin,Email)" + "values (@Coin,@Email)";
+
+                SqlCommand komut_Coin = new SqlCommand(save_StatyonCoin, connect);
+                komut_Coin.Parameters.AddWithValue("@Coin", 0);
+                komut_Coin.Parameters.AddWithValue("@Email", TB_E_Posta.Text.Trim().ToLower());
+
+
+                komut_Coin.ExecuteNonQuery();
+
+
+
+                connect.Close();
+                
                 MessageBox.Show("KAYIT EKLENDİ");
+
                  SIGNUP SIGNUP = new SIGNUP();
                 SIGNUP.Close();
                 LOGIN LOGIN = new LOGIN();
