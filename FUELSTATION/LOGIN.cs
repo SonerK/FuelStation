@@ -69,11 +69,10 @@ namespace FUELSTATION
                             AdminPanel.Show();
                             connect.Close();
 
-
                         }
                         else if (Convert.ToInt32(oku["USID"]) == 2)
                         {
-                            PumperPersonel PumperPersonel = new PumperPersonel(/*oku["Name"].ToString(), oku["SurName"].ToString(), oku["UId"].ToString(), oku["Email"].ToString()*/);
+                            PumperPersonel PumperPersonel = new PumperPersonel(oku["Name"].ToString(), oku["SurName"].ToString(), oku["UId"].ToString(), oku["Email"].ToString());
                             PumperPersonel.Show();
                             connect.Close();
 
@@ -83,7 +82,6 @@ namespace FUELSTATION
                             Users Users = new Users(oku["Name"].ToString(), oku["SurName"].ToString(), oku["UId"].ToString(), oku["Email"].ToString());
                             Users.Show();
                             connect.Close();
-                            
 
 
                         }

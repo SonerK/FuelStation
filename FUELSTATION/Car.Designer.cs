@@ -315,7 +315,7 @@
             this.Controls.Add(this.RB_NewCar);
             this.Controls.Add(this.RB_CarUpdate);
             this.Name = "Car";
-            this.Text = "\"";
+            this.Text = "Car";
             this.Load += new System.EventHandler(this.Car_Load);
             this.P_CarInfo.ResumeLayout(false);
             this.P_CarInfo.PerformLayout();

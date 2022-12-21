@@ -20,4 +20,3 @@ C:\Users\snrkt\source\repos\FUELSTATION\FUELSTATION\obj\Debug\FUELSTATION.Car.re
 C:\Users\snrkt\source\repos\FUELSTATION\FUELSTATION\obj\Debug\FUELSTATION.UsersUpdate.resources
 C:\Users\snrkt\source\repos\FUELSTATION\FUELSTATION\obj\Debug\FUELSTATION.ForgotPassword.resources
 C:\Users\snrkt\source\repos\FUELSTATION\FUELSTATION\obj\Debug\FUELSTATION.PasswordUpdate.resources
-C:\Users\snrkt\source\repos\FUELSTATION\FUELSTATION\obj\Debug\FUELSTATION.StatyonCoin.resources
