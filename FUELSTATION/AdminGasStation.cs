@@ -24,7 +24,7 @@ namespace FUELSTATION
         private void AdminGasStation_Load(object sender, EventArgs e)
         {
             City();
-           TB_StationCode.Enabled = true;
+           TB_StationCode.Enabled = false;
         }
         void City()
         {

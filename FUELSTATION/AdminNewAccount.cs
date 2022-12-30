@@ -82,45 +82,72 @@ namespace FUELSTATION
                            "values(@Name,@SurName,@Password,@Email,@Phone,@BirthDay,@USID)";
                         SqlCommand komut_Admin = new SqlCommand(Save_Admin, connect);
 
-                        komut_Admin.Parameters.AddWithValue("@Name", TB_Name.Text);
-                        komut_Admin.Parameters.AddWithValue("@SurName", TB_SurName.Text);
-                        komut_Admin.Parameters.AddWithValue("@Password", Md5(TB_Password.Text));
-                        komut_Admin.Parameters.AddWithValue("@Email", TB_E_Mail.Text);
-                        komut_Admin.Parameters.AddWithValue("@Phone", TB_PhoneNumber.Text);
-                        komut_Admin.Parameters.AddWithValue("@Birthday", dateTimePicker1.Value);
-                        komut_Admin.Parameters.AddWithValue("@USID", 1);
 
-                        komut_Admin.ExecuteNonQuery();
+                        SqlCommand EmailController = new SqlCommand("select Email from USERS where Email='" + TB_E_Mail.Text.Trim().ToLower().ToString() + "'", connect);
+
+                        int oku = Convert.ToInt32(EmailController.ExecuteScalar());
+                        if (oku == 0)
+                        {
+
+                            komut_Admin.Parameters.AddWithValue("@Name", TB_Name.Text);
+                            komut_Admin.Parameters.AddWithValue("@SurName", TB_SurName.Text);
+                            komut_Admin.Parameters.AddWithValue("@Password", Md5(TB_Password.Text));
+                            komut_Admin.Parameters.AddWithValue("@Email", TB_E_Mail.Text);
+                            komut_Admin.Parameters.AddWithValue("@Phone", TB_PhoneNumber.Text);
+                            komut_Admin.Parameters.AddWithValue("@Birthday", dateTimePicker1.Value);
+                            komut_Admin.Parameters.AddWithValue("@USID", 1);
+
+                            komut_Admin.ExecuteNonQuery();
 
 
-                        connect.Close();
+                            connect.Close();
 
-                        MessageBox.Show("KAYIT EKLENDİ");
+                            MessageBox.Show("KAYIT EKLENDİ");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Bu E-Posta ile zaten bir kullanıcı kayıtlı.");
+                            connect.Close();
+                        }
                     }
+
                     else if (RB_Person.Checked)
                     {
                         connect.Open();
                         string Save_Person = "Insert into USERS(Name,SurName,Password,Email,Phone,BirthDay,DepID,StationCode,PersonNumber,USID)" +
                            "values(@Name,@SurName,@Password,@Email,@Phone,@BirthDay,@DepID,@StationCode,@PersonNumber,@USID)";
                         SqlCommand komut_Person = new SqlCommand(Save_Person, connect);
+                        SqlCommand EmailController = new SqlCommand("select Email from USERS where Email='" + TB_E_Mail.Text.Trim().ToLower().ToString() + "'", connect);
 
-                        komut_Person.Parameters.AddWithValue("@Name", TB_Name.Text);
-                        komut_Person.Parameters.AddWithValue("@SurName", TB_SurName.Text);
-                        komut_Person.Parameters.AddWithValue("@Password", Md5(TB_Password.Text));
-                        komut_Person.Parameters.AddWithValue("@Email", TB_E_Mail.Text);
-                        komut_Person.Parameters.AddWithValue("@Phone", TB_PhoneNumber.Text);
-                        komut_Person.Parameters.AddWithValue("@Birthday", dateTimePicker1.Value);
-                        komut_Person.Parameters.AddWithValue("@DepID", CB_Department.SelectedValue);
-                        komut_Person.Parameters.AddWithValue("@StationCode", TB_StationCode.Text);
-                        komut_Person.Parameters.AddWithValue("@PersonNumber", TB_PersonNumber.Text);
-                        komut_Person.Parameters.AddWithValue("@USID", 2);
-
-                        komut_Person.ExecuteNonQuery();
+                        int oku = Convert.ToInt32(EmailController.ExecuteScalar());
+                        if (oku == 0)
+                        {
 
 
-                        connect.Close();
+                            komut_Person.Parameters.AddWithValue("@Name", TB_Name.Text);
+                            komut_Person.Parameters.AddWithValue("@SurName", TB_SurName.Text);
+                            komut_Person.Parameters.AddWithValue("@Password", Md5(TB_Password.Text));
+                            komut_Person.Parameters.AddWithValue("@Email", TB_E_Mail.Text);
+                            komut_Person.Parameters.AddWithValue("@Phone", TB_PhoneNumber.Text);
+                            komut_Person.Parameters.AddWithValue("@Birthday", dateTimePicker1.Value);
+                            komut_Person.Parameters.AddWithValue("@DepID", CB_Department.SelectedValue);
+                            komut_Person.Parameters.AddWithValue("@StationCode", TB_StationCode.Text);
+                            komut_Person.Parameters.AddWithValue("@PersonNumber", TB_PersonNumber.Text);
+                            komut_Person.Parameters.AddWithValue("@USID", 2);
 
-                        MessageBox.Show("KAYIT EKLENDİ");
+                            komut_Person.ExecuteNonQuery();
+
+
+                            connect.Close();
+
+                            MessageBox.Show("KAYIT EKLENDİ");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Bu E-Posta ile zaten bir kullanıcı kayıtlı.");
+                            connect.Close();
+                        }
+
                     }
             }
 

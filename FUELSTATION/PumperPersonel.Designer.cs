@@ -45,6 +45,8 @@
             this.L_Coin = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.GB_UCoin = new System.Windows.Forms.GroupBox();
+            this.L_Kalan = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.L_UCoin = new System.Windows.Forms.Label();
             this.GB_Pumper = new System.Windows.Forms.GroupBox();
@@ -64,8 +66,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.TB_FuelCash = new System.Windows.Forms.TextBox();
             this.BT_LPNSearch = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.L_Kalan = new System.Windows.Forms.Label();
             this.GB_Coin.SuspendLayout();
             this.GB_UCoin.SuspendLayout();
             this.GB_Pumper.SuspendLayout();
@@ -226,12 +226,30 @@
             this.GB_UCoin.Controls.Add(this.label14);
             this.GB_UCoin.Controls.Add(this.label8);
             this.GB_UCoin.Controls.Add(this.L_UCoin);
-            this.GB_UCoin.Location = new System.Drawing.Point(121, 59);
+            this.GB_UCoin.Location = new System.Drawing.Point(108, 50);
             this.GB_UCoin.Name = "GB_UCoin";
             this.GB_UCoin.Size = new System.Drawing.Size(225, 84);
             this.GB_UCoin.TabIndex = 18;
             this.GB_UCoin.TabStop = false;
             this.GB_UCoin.Text = "groupBox1";
+            // 
+            // L_Kalan
+            // 
+            this.L_Kalan.AutoSize = true;
+            this.L_Kalan.Location = new System.Drawing.Point(137, 48);
+            this.L_Kalan.Name = "L_Kalan";
+            this.L_Kalan.Size = new System.Drawing.Size(27, 16);
+            this.L_Kalan.TabIndex = 19;
+            this.L_Kalan.Text = "null";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(126, 18);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(86, 16);
+            this.label14.TabIndex = 18;
+            this.label14.Text = "Kalan Bakiye";
             // 
             // label8
             // 
@@ -433,24 +451,6 @@
             this.BT_LPNSearch.Text = "Plakayı Sorgula";
             this.BT_LPNSearch.UseVisualStyleBackColor = true;
             this.BT_LPNSearch.Click += new System.EventHandler(this.BT_LPNSearch_Click);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(126, 18);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(86, 16);
-            this.label14.TabIndex = 18;
-            this.label14.Text = "Kalan Bakiye";
-            // 
-            // L_Kalan
-            // 
-            this.L_Kalan.AutoSize = true;
-            this.L_Kalan.Location = new System.Drawing.Point(137, 48);
-            this.L_Kalan.Name = "L_Kalan";
-            this.L_Kalan.Size = new System.Drawing.Size(27, 16);
-            this.L_Kalan.TabIndex = 19;
-            this.L_Kalan.Text = "null";
             // 
             // PumperPersonel
             // 

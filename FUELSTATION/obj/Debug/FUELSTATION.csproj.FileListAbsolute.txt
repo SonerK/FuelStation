@@ -21,3 +21,4 @@ C:\Users\snrkt\source\repos\FUELSTATION\FUELSTATION\obj\Debug\FUELSTATION.UsersU
 C:\Users\snrkt\source\repos\FUELSTATION\FUELSTATION\obj\Debug\FUELSTATION.ForgotPassword.resources
 C:\Users\snrkt\source\repos\FUELSTATION\FUELSTATION\obj\Debug\FUELSTATION.PasswordUpdate.resources
 C:\Users\snrkt\source\repos\FUELSTATION\FUELSTATION\obj\Debug\FUELSTATION.StatyonCoin.resources
+C:\Users\snrkt\source\repos\FUELSTATION\FUELSTATION\obj\Debug\FUELSTATION.Campaign.resources

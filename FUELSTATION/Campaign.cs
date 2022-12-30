@@ -16,5 +16,10 @@ namespace FUELSTATION
         {
             InitializeComponent();
         }
+
+        private void BT_Campain_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("HER YAKIT ALIMINIZA ALDIĞINIZ YAKIT ÜCRETİNİN %3 Ü STATYON COİN OLARAK HESABINIZA AKTARILIR.");
+        }
     }
 }

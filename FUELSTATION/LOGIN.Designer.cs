@@ -48,6 +48,7 @@
             // 
             this.TB_Password.Location = new System.Drawing.Point(146, 126);
             this.TB_Password.Name = "TB_Password";
+            this.TB_Password.PasswordChar = '•';
             this.TB_Password.Size = new System.Drawing.Size(100, 22);
             this.TB_Password.TabIndex = 2;
             // 
@@ -115,6 +116,7 @@
             this.Controls.Add(this.TB_E_Posta);
             this.Name = "LOGIN";
             this.Text = "GİRİŞ";
+            this.Load += new System.EventHandler(this.LOGIN_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

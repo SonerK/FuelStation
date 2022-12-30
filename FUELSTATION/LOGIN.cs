@@ -62,43 +62,56 @@ namespace FUELSTATION
 
                     if (oku.Read())
                     {
-
-                        if (Convert.ToInt32(oku["USID"]) == 1)
+                        if (Convert.ToInt32(oku["UAP"]) == 1)
                         {
-                            AdminPanel AdminPanel = new AdminPanel(oku["Name"].ToString(), oku["SurName"].ToString(), oku["UId"].ToString(), oku["Email"].ToString());
-                            AdminPanel.Show();
-                            connect.Close();
+
+                            if (Convert.ToInt32(oku["USID"]) == 1)
+                            {
+                                AdminPanel AdminPanel = new AdminPanel(oku["Name"].ToString(), oku["SurName"].ToString(), oku["UId"].ToString(), oku["Email"].ToString());
+                                AdminPanel.Show();
+                                connect.Close();
+
+
+                            }
+                            else if (Convert.ToInt32(oku["USID"]) == 2)
+                            {
+                                PumperPersonel PumperPersonel = new PumperPersonel(/*oku["Name"].ToString(), oku["SurName"].ToString(), oku["UId"].ToString(), oku["Email"].ToString()*/);
+                                PumperPersonel.Show();
+                                connect.Close();
+
+                            }
+                            else if (Convert.ToInt32(oku["USID"]) == 3)
+                            {
+                                Users Users = new Users(oku["Name"].ToString(), oku["SurName"].ToString(), oku["UId"].ToString(), oku["Email"].ToString());
+                                Users.Show();
+                                connect.Close();
+
+
+
+                            }
 
 
                         }
-                        else if (Convert.ToInt32(oku["USID"]) == 2)
+                        else if (Convert.ToInt32(oku["UAP"]) == 2)
                         {
-                            PumperPersonel PumperPersonel = new PumperPersonel(/*oku["Name"].ToString(), oku["SurName"].ToString(), oku["UId"].ToString(), oku["Email"].ToString()*/);
-                            PumperPersonel.Show();
+                            MessageBox.Show("Kullanıcı Adı Veya Şifre Hatalı");
                             connect.Close();
-
                         }
-                        else if (Convert.ToInt32(oku["USID"]) == 3)
-                        {
-                            Users Users = new Users(oku["Name"].ToString(), oku["SurName"].ToString(), oku["UId"].ToString(), oku["Email"].ToString());
-                            Users.Show();
+                        else
+                                {
+                            MessageBox.Show("Kullanıcı Adı Veya Şifre Hatalı");
                             connect.Close();
-                            
-
-
                         }
 
-
-
+                        
 
                     }
                     else
                     {
-
                         MessageBox.Show("Kullanıcı Adı Veya Şifre Hatalı");
                         connect.Close();
-
                     }
+
 
 
                 }
@@ -119,6 +132,11 @@ namespace FUELSTATION
         {
             SIGNUP sıgnup = new SIGNUP();
             sıgnup.Show();
+        }
+
+        private void LOGIN_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

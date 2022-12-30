@@ -72,7 +72,7 @@
             this.GB_Questions.Controls.Add(this.CB_Questions);
             this.GB_Questions.Location = new System.Drawing.Point(112, 180);
             this.GB_Questions.Name = "GB_Questions";
-            this.GB_Questions.Size = new System.Drawing.Size(643, 236);
+            this.GB_Questions.Size = new System.Drawing.Size(643, 192);
             this.GB_Questions.TabIndex = 3;
             this.GB_Questions.TabStop = false;
             this.GB_Questions.Text = "GB_Questions";

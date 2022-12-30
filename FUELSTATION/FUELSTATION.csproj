@@ -158,6 +158,9 @@
     <EmbeddedResource Include="AdminUpdateDelete.resx">
       <DependentUpon>AdminUpdateDelete.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Campaign.resx">
+      <DependentUpon>Campaign.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Car.resx">
       <DependentUpon>Car.cs</DependentUpon>
     </EmbeddedResource>

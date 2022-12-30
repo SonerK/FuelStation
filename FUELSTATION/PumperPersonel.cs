@@ -145,6 +145,16 @@ namespace FUELSTATION
                         connect.Close();
 
                     }
+                    else if (RB_Yok.Checked == false)
+                    {
+                        connect.Open();
+                        SqlCommand Coin = new SqlCommand("select Coin from COIN where Email=@p2", connect);
+                        Coin.Parameters.AddWithValue("@p2", E_posta);
+                        SqlDataReader read = Coin.ExecuteReader();
+                        read.Read();
+                        L_Coin.Text = read["Coin"].ToString();
+                        connect.Close();
+                    }
 
 
 
@@ -207,7 +217,7 @@ namespace FUELSTATION
                 {
                     MessageBox.Show("Kullanmak istediğiniz bakiye 0'dan küçük olamaz.");
                 }
-                else if (Coin <= 1)
+                else if (Coin <= 5)
                 {
                     MessageBox.Show("Minimum bakiye kullanımı 5 Coin'den az olamaz.");
                 }
@@ -277,6 +287,11 @@ namespace FUELSTATION
                         TB_Fuel.Text = E.ToString();
                         L_Fuell.Text = "ALINAN ELEKTRİK (DC) MİKTARI(kWh)";
                     }
+                    else
+                    {
+                        MessageBox.Show("LÜTFEN YAKIT TÜRÜNÜ SEÇİNİZ");
+                    }
+
                 }
             }
             else if (RB_Yok.Checked == true)
@@ -289,41 +304,54 @@ namespace FUELSTATION
                 else
                 {
                     TB_Cash.Text = TB_FuelCash.Text;
+                    StatyonCoin = Math.Round(StatyonCoin, 2);
+                    StatyonCoin = (Convert.ToDecimal(TB_Cash.Text) * 3) / 100;
+                    TB_CashCoin.Text = StatyonCoin.ToString();
                     if (RB_Benzin.Checked == true)
                     {
                        
                       
-                        B = Math.Round(B, 2);
-                        B = Convert.ToDecimal(TB_FuelCash.Text) / Convert.ToDecimal(RB_Benzin.Text);
-                        TB_Fuel.Text = B.ToString();
                       
+                        B = Convert.ToDecimal(TB_FuelCash.Text) / Convert.ToDecimal(RB_Benzin.Text);
+                        B = Math.Round(B, 2);
+                        TB_Fuel.Text = B.ToString();
+                        L_Fuell.Text = "ALINAN YAKIT MİKTARI (L) :";
                     }
                     else if (RB_Mazot.Checked == true)
                     {
                        
                         
-                         M = Math.Round(M, 2);
+                        
                          M = Convert.ToDecimal(TB_FuelCash.Text) / Convert.ToDecimal(RB_Mazot.Text);
+                        M = Math.Round(M, 2);
                         TB_Fuel.Text = M.ToString();
-                       
+                        L_Fuell.Text = "ALINAN YAKIT MİKTARI (L) :";
                     }
                     else if (RB_Gaz.Checked == true)
                     {
                        
                        
-                        G = Math.Round(G, 2);
-                        G = Convert.ToDecimal(TB_FuelCash.Text) / Convert.ToDecimal(RB_Gaz.Text);
-                        TB_Fuel.Text = G.ToString();
                        
+                        G = Convert.ToDecimal(TB_FuelCash.Text) / Convert.ToDecimal(RB_Gaz.Text);
+                        G = Math.Round(G, 2);
+                        TB_Fuel.Text = G.ToString();
+                        L_Fuell.Text = "ALINAN YAKIT MİKTARI (L) :";
+
                     }
                     else if (RB_Elektrik.Checked == true)
                     {
                       
                        
-                        E = Math.Round(E, 2);
-                        E = Convert.ToDecimal(TB_FuelCash.Text) / Convert.ToDecimal(RB_Elektrik.Text);
-                        TB_Fuel.Text = E.ToString();
                        
+                        E = Convert.ToDecimal(TB_FuelCash.Text) / Convert.ToDecimal(RB_Elektrik.Text);
+                        E = Math.Round(E, 2);
+                        TB_Fuel.Text = E.ToString();
+                        L_Fuell.Text = "ALINAN ELEKTRİK (DC) MİKTARI(kWh)";
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("LÜTFEN YAKIT TÜRÜNÜ SEÇİNİZ");
                     }
 
 
@@ -336,7 +364,7 @@ namespace FUELSTATION
         }
 
 
-         decimal CoinAndCoin1;
+         decimal CoinAndCoin1,CoinAndCoin2;
         private void BT_Save_Click(object sender, EventArgs e)
         {
             //string connectionString = "Data Source=TULPAR;Initial Catalog=GASSTATION;Integrated Security=True";
@@ -370,42 +398,91 @@ namespace FUELSTATION
 
                     try
                     {
-                        connect.Open();
+                        if (RB_Var.Checked == true)
+                        {
+                            connect.Open();
 
-                            
-                            
+
+
                             SqlCommand Coin = new SqlCommand("select * from COIN where Email=@p2", connect);
                             Coin.Parameters.AddWithValue("@p2", E_posta);
                             SqlDataReader readd = Coin.ExecuteReader();
                             readd.Read();
                             ClientCoin = Convert.ToDecimal(readd["Coin"]);
-                          //  L_UCoin.Text = ClientCoin.ToString();
+                            //  L_UCoin.Text = ClientCoin.ToString();
+                            readd.Close();
+
+
+
+
+                            CoinAndCoin1 = Convert.ToDecimal(TB_CashCoin.Text) + Convert.ToDecimal(L_Kalan.Text);
+
+
+                            // SqlCommand CoinUpdate = new SqlCommand("update COIN set Coin='" + CoinAndCoin + "'where Email='" + E_posta + "'",connect);
+                            SqlCommand CoinUpdate = new SqlCommand("update COIN set Coin=@Coin where Email=@Email", connect);
+
+                            CoinUpdate.Parameters.Add("@Coin", SqlDbType.Decimal).Value = CoinAndCoin1;
+                            CoinUpdate.Parameters.Add("@Email", SqlDbType.NVarChar, 50).Value = E_posta;
+
+
+                            int rowsAffected = CoinUpdate.ExecuteNonQuery();
+                            SqlDataReader read = CoinUpdate.ExecuteReader();
+
+                            if (rowsAffected > 0)
+                            {
+
+
+
+                                connect.Close();
+                                MessageBox.Show("yakıt alımı başarılı");
+
+                            }
+
+                            else
+                            {
+                                MessageBox.Show("yakıt alımı başarıısz");
+                            }
+                    }
+
+
+                         else if (RB_Yok.Checked == true)
+                    {
+                        connect.Open();
+
+
+
+                        SqlCommand Coin = new SqlCommand("select * from COIN where Email=@p2", connect);
+                        Coin.Parameters.AddWithValue("@p2", E_posta);
+                        SqlDataReader readd = Coin.ExecuteReader();
+                        readd.Read();
+                        ClientCoin = Convert.ToDecimal(readd["Coin"]);
+                        //  L_UCoin.Text = ClientCoin.ToString();
                         readd.Close();
 
-                       
 
 
-                        CoinAndCoin1 = Convert.ToDecimal(TB_CashCoin.Text) + Convert.ToDecimal(L_Kalan.Text);
-                        
-                         
+
+                        CoinAndCoin2 = Convert.ToDecimal(TB_CashCoin.Text) + Convert.ToDecimal(L_Coin.Text);
+
+
                         // SqlCommand CoinUpdate = new SqlCommand("update COIN set Coin='" + CoinAndCoin + "'where Email='" + E_posta + "'",connect);
                         SqlCommand CoinUpdate = new SqlCommand("update COIN set Coin=@Coin where Email=@Email", connect);
 
-                        CoinUpdate.Parameters.Add("@Coin", SqlDbType.Decimal).Value = CoinAndCoin1;
+                        CoinUpdate.Parameters.Add("@Coin", SqlDbType.Decimal).Value = CoinAndCoin2;
                         CoinUpdate.Parameters.Add("@Email", SqlDbType.NVarChar, 50).Value = E_posta;
-                       
+
 
                         int rowsAffected = CoinUpdate.ExecuteNonQuery();
                         SqlDataReader read = CoinUpdate.ExecuteReader();
 
                         if (rowsAffected > 0)
                         {
-                            
-                           
-                            
+
+
+
                             connect.Close();
                             MessageBox.Show("yakıt alımı başarılı");
-                            
+
                         }
 
                         else
@@ -413,14 +490,14 @@ namespace FUELSTATION
                             MessageBox.Show("yakıt alımı başarıısz");
                         }
 
-                        
-                          
-
-
-
-
 
                     }
+
+
+
+
+
+                }
                         catch (Exception ex) { MessageBox.Show(ex.Message + "hata var hay sikicem"); }
                        
                     

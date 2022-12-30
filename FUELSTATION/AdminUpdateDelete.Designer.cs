@@ -54,6 +54,7 @@
             this.TB_Department = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.P_Person = new System.Windows.Forms.Panel();
+            this.CB_UAP = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.P_Person.SuspendLayout();
             this.SuspendLayout();
@@ -62,7 +63,7 @@
             // 
             this.BT_Update.Location = new System.Drawing.Point(685, 12);
             this.BT_Update.Name = "BT_Update";
-            this.BT_Update.Size = new System.Drawing.Size(75, 23);
+            this.BT_Update.Size = new System.Drawing.Size(103, 23);
             this.BT_Update.TabIndex = 0;
             this.BT_Update.Text = "Güncelle";
             this.BT_Update.UseVisualStyleBackColor = true;
@@ -72,7 +73,7 @@
             // 
             this.BT_Delete.Location = new System.Drawing.Point(685, 74);
             this.BT_Delete.Name = "BT_Delete";
-            this.BT_Delete.Size = new System.Drawing.Size(75, 23);
+            this.BT_Delete.Size = new System.Drawing.Size(103, 23);
             this.BT_Delete.TabIndex = 1;
             this.BT_Delete.Text = "Sil";
             this.BT_Delete.UseVisualStyleBackColor = true;
@@ -282,11 +283,23 @@
             this.P_Person.Size = new System.Drawing.Size(265, 100);
             this.P_Person.TabIndex = 31;
             // 
+            // CB_UAP
+            // 
+            this.CB_UAP.FormattingEnabled = true;
+            this.CB_UAP.Items.AddRange(new object[] {
+            "AKTİF",
+            "PASİF"});
+            this.CB_UAP.Location = new System.Drawing.Point(491, 37);
+            this.CB_UAP.Name = "CB_UAP";
+            this.CB_UAP.Size = new System.Drawing.Size(121, 24);
+            this.CB_UAP.TabIndex = 35;
+            // 
             // AdminUpdateDelete
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.CB_UAP);
             this.Controls.Add(this.P_Person);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label11);
@@ -346,5 +359,6 @@
         private System.Windows.Forms.TextBox TB_Department;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel P_Person;
+        private System.Windows.Forms.ComboBox CB_UAP;
     }
 }

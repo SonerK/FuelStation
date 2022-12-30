@@ -97,67 +97,81 @@ namespace FUELSTATION
             
             try
             {
-                if (connect.State == ConnectionState.Closed)
                     connect.Open();
+                
                 string save_Users = "insert into USERS (UAP,Name,SurName,Password,Email,Phone,Birthday,USID,FuelTypeID,BrandID,ModelID,CityID,DistrictID,LPN,QUESTIONSID,ANSWERS) " +
                     "values (@UAP,@Name,@SurName,@Password,@Email,@Phone,@Birthday,@USID,@FuelTypeID,@BrandID,@ModelID,@CityID,@DistrictID,@LPN,@QUESTIONSID,@ANSWERS)";
                 SqlCommand komut_Users = new SqlCommand(save_Users, connect);
-               komut_Users.Parameters.AddWithValue("@Name",TB_Name.Text );
-                komut_Users.Parameters.AddWithValue("@SurName",TB_SurName.Text );
-                komut_Users.Parameters.AddWithValue("@Password", Md5(TB_Password.Text));
-                komut_Users.Parameters.AddWithValue("@Email",TB_E_Posta.Text.Trim().ToLower());
-                komut_Users.Parameters.AddWithValue("@Phone", TB_PhoneNumber.Text);
-                komut_Users.Parameters.AddWithValue("@USID", 3);
-                komut_Users.Parameters.AddWithValue("@Birthday", dateTimePicker1.Value);
-                komut_Users.Parameters.AddWithValue("@FuelTypeID", Convert.ToInt32(CB_FuelType.SelectedValue));
-                komut_Users.Parameters.AddWithValue("@BrandID", Convert.ToInt32(CB_CarBrand.SelectedValue));
-                komut_Users.Parameters.AddWithValue("@ModelID", Convert.ToInt32((CB_CarModel.SelectedIndex + 1)));
-                komut_Users.Parameters.AddWithValue("@CityID", Convert.ToInt32(CB_City.SelectedValue));
-                komut_Users.Parameters.AddWithValue("@DistrictID", Convert.ToInt32((CB_District.SelectedIndex + 1)));
-                komut_Users.Parameters.AddWithValue("@QUESTIONSID", Convert.ToInt32(CB_Questions.SelectedValue));
-                komut_Users.Parameters.AddWithValue("@ANSWERS", Md5(TB_Answers.Text));
-               
-            
-                komut_Users.Parameters.AddWithValue("@UAP", 1);
-                komut_Users.Parameters.AddWithValue("@LPN", TB_LıcensePlateNumber.Text);
+             
+
+                SqlCommand EmailController = new SqlCommand("select Email from USERS where Email='"+ TB_E_Posta.Text.Trim().ToLower().ToString() + "'",connect);
+
+               int oku = Convert.ToInt32(EmailController.ExecuteScalar());
+
+                if (oku==0)
+                {
+                        komut_Users.Parameters.AddWithValue("@Name", TB_Name.Text);
+                        komut_Users.Parameters.AddWithValue("@SurName", TB_SurName.Text);
+                        komut_Users.Parameters.AddWithValue("@Password", Md5(TB_Password.Text));
+                        komut_Users.Parameters.AddWithValue("@Email", TB_E_Posta.Text.Trim().ToLower());
+                        komut_Users.Parameters.AddWithValue("@Phone", TB_PhoneNumber.Text);
+                        komut_Users.Parameters.AddWithValue("@USID", 3);
+                        komut_Users.Parameters.AddWithValue("@Birthday", dateTimePicker1.Value);
+                        komut_Users.Parameters.AddWithValue("@FuelTypeID", Convert.ToInt32(CB_FuelType.SelectedValue));
+                        komut_Users.Parameters.AddWithValue("@BrandID", Convert.ToInt32(CB_CarBrand.SelectedValue));
+                        komut_Users.Parameters.AddWithValue("@ModelID", Convert.ToInt32((CB_CarModel.SelectedIndex + 1)));
+                        komut_Users.Parameters.AddWithValue("@CityID", Convert.ToInt32(CB_City.SelectedValue));
+                        komut_Users.Parameters.AddWithValue("@DistrictID", Convert.ToInt32((CB_District.SelectedIndex + 1)));
+                        komut_Users.Parameters.AddWithValue("@QUESTIONSID", Convert.ToInt32(CB_Questions.SelectedValue));
+                        komut_Users.Parameters.AddWithValue("@ANSWERS", Md5(TB_Answers.Text));
 
 
-                komut_Users.ExecuteNonQuery();
-
-               
-                string save_LıcensePlateNumber = "insert into UserCar(BrandID,ModelID,LPN,Email)" + "values (@BrandID,@ModelID,@LPN,@Email)";
-
-                SqlCommand komut_UserCar = new SqlCommand(save_LıcensePlateNumber, connect);
-                komut_UserCar.Parameters.AddWithValue("@Email", TB_E_Posta.Text.Trim().ToLower());
-                komut_UserCar.Parameters.AddWithValue("@BrandID", Convert.ToInt32(CB_CarBrand.SelectedValue));
-                komut_UserCar.Parameters.AddWithValue("@ModelID", Convert.ToInt32((CB_CarModel.SelectedIndex + 1)));
-              
-                komut_UserCar.Parameters.AddWithValue("@LPN", TB_LıcensePlateNumber.Text);
-
-                komut_UserCar.ExecuteNonQuery();
+                        komut_Users.Parameters.AddWithValue("@UAP", 1);
+                        komut_Users.Parameters.AddWithValue("@LPN", TB_LıcensePlateNumber.Text);
 
 
-
-                string save_StatyonCoin = "insert into COIN(Coin,Email)" + "values (@Coin,@Email)";
-
-                SqlCommand komut_Coin = new SqlCommand(save_StatyonCoin, connect);
-                komut_Coin.Parameters.AddWithValue("@Coin", 0);
-                komut_Coin.Parameters.AddWithValue("@Email", TB_E_Posta.Text.Trim().ToLower());
+                        komut_Users.ExecuteNonQuery();
 
 
-                komut_Coin.ExecuteNonQuery();
+                        string save_LıcensePlateNumber = "insert into UserCar(BrandID,ModelID,LPN,Email)" + "values (@BrandID,@ModelID,@LPN,@Email)";
+
+                        SqlCommand komut_UserCar = new SqlCommand(save_LıcensePlateNumber, connect);
+                        komut_UserCar.Parameters.AddWithValue("@Email", TB_E_Posta.Text.Trim().ToLower());
+                        komut_UserCar.Parameters.AddWithValue("@BrandID", Convert.ToInt32(CB_CarBrand.SelectedValue));
+                        komut_UserCar.Parameters.AddWithValue("@ModelID", Convert.ToInt32((CB_CarModel.SelectedIndex + 1)));
+
+                        komut_UserCar.Parameters.AddWithValue("@LPN", TB_LıcensePlateNumber.Text);
+
+                        komut_UserCar.ExecuteNonQuery();
 
 
 
-                connect.Close();
-                
-                MessageBox.Show("KAYIT EKLENDİ");
+                        string save_StatyonCoin = "insert into COIN(Coin,Email)" + "values (@Coin,@Email)";
 
-                 SIGNUP SIGNUP = new SIGNUP();
-                SIGNUP.Close();
-                LOGIN LOGIN = new LOGIN();
-                LOGIN.Show();
+                        SqlCommand komut_Coin = new SqlCommand(save_StatyonCoin, connect);
+                        komut_Coin.Parameters.AddWithValue("@Coin", 0);
+                        komut_Coin.Parameters.AddWithValue("@Email", TB_E_Posta.Text.Trim().ToLower());
 
+
+                        komut_Coin.ExecuteNonQuery();
+
+
+
+                        connect.Close();
+
+                        MessageBox.Show("KAYIT EKLENDİ");
+
+                        SIGNUP SIGNUP = new SIGNUP();
+                        SIGNUP.Close();
+                        LOGIN LOGIN = new LOGIN();
+                        LOGIN.Show();
+                    
+                }
+                else
+                {
+                    MessageBox.Show("Bu E-Posta ile zaten bir kullanıcı kayıtlı.");
+                    connect.Close();
+                }
             }
 
             catch (Exception hata)

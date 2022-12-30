@@ -40,6 +40,7 @@
             // 
             this.TB_PassUpdate1.Location = new System.Drawing.Point(64, 74);
             this.TB_PassUpdate1.Name = "TB_PassUpdate1";
+            this.TB_PassUpdate1.PasswordChar = '•';
             this.TB_PassUpdate1.Size = new System.Drawing.Size(100, 22);
             this.TB_PassUpdate1.TabIndex = 0;
             // 
@@ -47,6 +48,7 @@
             // 
             this.TB_PassUpdate2.Location = new System.Drawing.Point(50, 210);
             this.TB_PassUpdate2.Name = "TB_PassUpdate2";
+            this.TB_PassUpdate2.PasswordChar = '•';
             this.TB_PassUpdate2.Size = new System.Drawing.Size(100, 22);
             this.TB_PassUpdate2.TabIndex = 1;
             // 

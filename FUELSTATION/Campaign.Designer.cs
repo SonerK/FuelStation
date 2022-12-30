@@ -28,12 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Campaign));
+            this.BT_Campain = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // BT_Campain
+            // 
+            this.BT_Campain.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BT_Campain.BackgroundImage")));
+            this.BT_Campain.Location = new System.Drawing.Point(441, 104);
+            this.BT_Campain.Name = "BT_Campain";
+            this.BT_Campain.Size = new System.Drawing.Size(393, 442);
+            this.BT_Campain.TabIndex = 16;
+            this.BT_Campain.UseVisualStyleBackColor = true;
+            this.BT_Campain.Click += new System.EventHandler(this.BT_Campain_Click);
+            // 
+            // Campaign
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1178, 598);
+            this.Controls.Add(this.BT_Campain);
+            this.Name = "Campaign";
             this.Text = "Campaign";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button BT_Campain;
     }
 }
